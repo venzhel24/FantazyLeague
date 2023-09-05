@@ -1,0 +1,17 @@
+.error__block {
+    background-color: #f44336; /* Red background color */
+    color: #fff; /* White text color */
+    border-radius: 8px; /* Larger border-radius for a smoother look */
+    padding: 20px; /* Increased padding for better spacing */
+    font-size: 18px; /* Slightly larger font size for emphasis */
+    text-align: center; /* Center-align the error message */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
+    width: 300px; /* Set a fixed width to limit the block's size */
+    margin: 0 auto; /* Center the block horizontally */
+}
+
+/* Hover effect to make the block stand out */
+.error__block:hover {
+    transform: translateY(-2px); /* Slight upward translation on hover */
+    transition: transform 0.2s ease-in-out; /* Smooth hover animation */
+}

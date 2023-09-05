@@ -1,0 +1,19 @@
+.page__wrapper {
+    margin-top: 30px;
+    display: flex;
+}
+
+.page {
+    padding: 10px;
+    color: #fff;
+    border: 1px solid rgba(230, 184, 0, 1);
+    background-color: rgba(230, 184, 0, 1);
+    cursor: pointer;
+}
+
+.page__current {
+    background-color: rgba(3,3,3,1);
+    color: rgba(230, 184, 0, 1);
+    border: 2px solid orange;
+    font-weight: bold;
+}

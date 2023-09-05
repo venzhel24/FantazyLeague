@@ -1,0 +1,72 @@
+table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 800px;
+    margin: 5px 20px;
+    font-size: 1.2rem;
+    text-align: center;
+    background-color: rgba(255,255,255,0.5);
+    box-shadow: 0 0 10px rgba(255,255,255,0.5);
+}
+
+table th {
+    font-weight: bold;
+    font-size: 16px;
+    /*background-color: rgba(255,255,255,0.8);*/
+    color: #fff;
+    background-color: rgba(230, 184, 0, 1);
+    padding: 1rem;
+    text-shadow: 1px 1px 1px #000;
+    border: 1px solid rgb(255, 255, 255);
+}
+
+table td {
+    font-size: 14px;
+    text-align: center;
+    background-color: rgba(3, 3, 3, 1);
+    border: 1px solid rgba(230, 184, 0, 1);
+    color: #fff;
+    padding: 8px 10px;
+}
+
+table td a:hover{
+    color: #C19B03;
+}
+
+table td img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+
+.heading__table {
+    position: relative;
+    text-align: center;
+    margin: 10px;
+    background-color: rgba(3, 3, 3, 1);
+    border: 2px solid rgba(230, 184, 0, 1);
+    color: #fff;
+    padding: 0 20px;
+    border-radius: 20px;
+}
+
+.heading__table h2 {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-size: 16px;
+    padding: 5px 10px;
+}
+
+.zero__padding {
+    padding:0;
+}
+
+.td__link {
+    cursor: pointer;
+}
+
+.td__link:hover {
+    background-color: rgba(51, 51, 51, 0.9);
+    /*color: rgba(230, 184, 0, 1);*/
+}

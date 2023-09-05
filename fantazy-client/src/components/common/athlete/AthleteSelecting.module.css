@@ -1,0 +1,24 @@
+.ul__block {
+    list-style-type: none;
+    padding: 0;
+    margin: 50px auto;
+    max-width: 300px;
+    min-width: 150px;
+}
+
+/* Styles for the list items */
+.ul__block li {
+    max-width: 300px;
+    cursor: pointer;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin: 5px;
+    background-color: #f9f9f9;
+    transition: background-color 0.3s; /* Smooth hover effect */
+}
+
+/* Hover effect */
+.ul__block li:hover {
+    background-color: #b7b4b4;
+    transition: background-color 0.3s;
+}
