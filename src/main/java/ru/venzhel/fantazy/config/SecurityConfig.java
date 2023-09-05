@@ -5,6 +5,7 @@ package ru.venzhel.fantazy.config;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -34,6 +35,7 @@ public class SecurityConfig {
         http
                 .csrf()
                 .disable()
+                .cors().disable()
                 .authorizeHttpRequests()
                 .requestMatchers(
                         "/api/v1/auth/**",
@@ -42,6 +44,7 @@ public class SecurityConfig {
                 .permitAll()
 
                 //.requestMatchers("/api/v1/admin/**").hasRole("ROLE_" + ADMIN.name())
+                .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .requestMatchers("/api/v1/admin/**").hasRole(ADMIN.name())
                 .requestMatchers("/api/v1/user/**").hasAnyRole(USER.name(), ADMIN.name(), MANAGER.name())
 

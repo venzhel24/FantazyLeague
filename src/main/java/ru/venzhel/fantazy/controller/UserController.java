@@ -5,10 +5,8 @@ import lombok.extern.log4j.Log4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.venzhel.fantazy.dto.*;
-import ru.venzhel.fantazy.model.Athlete;
 import ru.venzhel.fantazy.model.Event;
 import ru.venzhel.fantazy.model.Team;
-import ru.venzhel.fantazy.service.impl.AthleteServiceImpl;
 import ru.venzhel.fantazy.service.impl.EventServiceImpl;
 import ru.venzhel.fantazy.service.impl.TeamServiceImpl;
 
@@ -25,12 +23,7 @@ public class UserController {
 
     @PostMapping("/create-team")
     public ResponseEntity<CreateTeamResponse> createTeam(@RequestBody CreateTeamRequest request) {
-        TeamDto teamDto = TeamDto.builder()
-                .name(request.getTeamName())
-                .eventId(request.getEventId())
-                .athleteIds(request.getSelectedAthleteIds())
-                .build();
-        Team team = teamService.addNewTeam(teamDto);
+        Team team = teamService.addNewTeam(request);
         Event event = eventService.getById(request.getEventId());
         CreateTeamResponse response = new CreateTeamResponse(event, team);
         return ResponseEntity.ok(response);

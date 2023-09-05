@@ -31,7 +31,7 @@ public class Race {
     @Column(name = "date")
     private LocalDate date;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "event_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Event event;

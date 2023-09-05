@@ -1,6 +1,9 @@
 package ru.venzhel.fantazy.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ru.venzhel.fantazy.model.Athlete;
 import ru.venzhel.fantazy.repository.AthleteRepository;
@@ -20,5 +23,11 @@ public class AthleteServiceImpl  implements AthleteService {
             return null;
         }
         return athletes;
+    }
+
+    @Override
+    public Page<Athlete> getAll(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return athleteRepository.findAll(pageable);
     }
 }

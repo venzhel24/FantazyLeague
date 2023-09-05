@@ -1,8 +1,8 @@
 package ru.venzhel.fantazy.service;
 
+import ru.venzhel.fantazy.dto.CreateTeamRequest;
 import ru.venzhel.fantazy.dto.OverviewTeamDto;
 import ru.venzhel.fantazy.dto.TeamAndPointsDto;
-import ru.venzhel.fantazy.dto.TeamDto;
 import ru.venzhel.fantazy.model.Event;
 import ru.venzhel.fantazy.model.Team;
 
@@ -19,5 +19,5 @@ public interface TeamService {
 
     Team getTeamByEventAndUser(Event event);
 
-    Team addNewTeam(TeamDto teamDto);
+    Team addNewTeam(CreateTeamRequest request);
 }

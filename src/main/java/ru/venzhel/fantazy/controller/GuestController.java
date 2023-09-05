@@ -2,11 +2,10 @@ package ru.venzhel.fantazy.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
+import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.venzhel.fantazy.dto.*;
 import ru.venzhel.fantazy.model.*;
 import ru.venzhel.fantazy.service.ResultsService;
@@ -24,6 +23,24 @@ public class GuestController {
     private final RaceServiceImpl raceService;
     private final AthleteServiceImpl athleteService;
     private final EventServiceImpl eventService;
+
+    @GetMapping("/last-event")
+    public ResponseEntity<Event> getLastEvent() {
+        Event lastEvent = eventService.getLastEvent();
+        return ResponseEntity.ok(lastEvent);
+    }
+
+    @GetMapping("/current-event")
+    public ResponseEntity<Event> getCurrentEvent() {
+        Event currentEvent = eventService.getCurrentEvent();
+        return ResponseEntity.ok(currentEvent);
+    }
+
+    @GetMapping("/next-event")
+    public ResponseEntity<Event> getNextEvent() {
+        Event nextEvent = eventService.getNextEvent();
+        return ResponseEntity.ok(nextEvent);
+    }
 
 
     @GetMapping("/results/{id}")
@@ -62,9 +79,18 @@ public class GuestController {
     }
 
     @GetMapping("/athletes")
-    public ResponseEntity<List<Athlete>> findAllAthletes() {
-        List<Athlete> athletes = athleteService.getAll();
-        return ResponseEntity.ok(athletes);
+    public ResponseEntity<?> getAthletes(
+            @RequestParam(required = false) Integer page,
+            @RequestParam(required = false) Integer size) {
+        if (page != null && size != null) {
+            // Если параметры page и size переданы, выполняем пагинацию
+            Page<Athlete> athletes = athleteService.getAll(page, size);
+            return new ResponseEntity<>(athletes, HttpStatus.OK);
+        } else {
+            // Если параметры не переданы, возвращаем все записи
+            List<Athlete> athletes = athleteService.getAll();
+            return ResponseEntity.ok(athletes);
+        }
     }
 
     @GetMapping("/events")

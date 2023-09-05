@@ -4,10 +4,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import org.springframework.stereotype.Service;
-import ru.venzhel.fantazy.dto.AthleteAndPointsDto;
-import ru.venzhel.fantazy.dto.OverviewTeamDto;
-import ru.venzhel.fantazy.dto.TeamAndPointsDto;
-import ru.venzhel.fantazy.dto.TeamDto;
+import ru.venzhel.fantazy.dto.*;
 import ru.venzhel.fantazy.model.Athlete;
 import ru.venzhel.fantazy.model.Event;
 import ru.venzhel.fantazy.model.Team;
@@ -119,21 +116,22 @@ public class TeamServiceImpl implements TeamService {
 
     @Override
     @Transactional
-    public Team addNewTeam(TeamDto teamDto) {
+    public Team addNewTeam(CreateTeamRequest request) {
         try {
             log.debug("addNewTeam start[1]:");
-            Event event = eventRepository.findById(teamDto.getEventId())
+            log.debug("eventID - " + request.getEventId());
+            Event event = eventRepository.findById(request.getEventId())
                     .orElseThrow(() -> new IllegalArgumentException("Invalid event id"));
             User currentUser = userService.getCurrentUser();
 
-            if (teamRepository.existsTeamByEventIdAndUserId(teamDto.getEventId(), currentUser.getId())) {
+            if (teamRepository.existsTeamByEventIdAndUserId(request.getEventId(), currentUser.getId())) {
                 throw new IllegalArgumentException("User is already registered for this tournament");
             }
 
-            List<Athlete> athleteList = validateAthleteIds(teamDto.getAthleteIds());
+            List<Athlete> athleteList = validateAthleteIds(request.getSelectedAthleteIds());
 
             Team team = Team.builder()
-                    .name(teamDto.getName())
+                    .name(request.getTeamName())
                     .event(event)
                     .user(currentUser)
                     .athlete1(athleteList.get(0))
